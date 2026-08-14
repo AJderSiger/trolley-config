@@ -46,20 +46,29 @@
       <div class="viewer-label">Ansicht — Vorderseite</div>
       <div class="viewer-serial" id="viewerSerial">CONFIG-ID —</div>
     </div>
-    <div class="trolley" id="trolley">
-      <div class="plate-wrap">
+    <div class="trolley" id="trolley" data-view="open">
+      <div class="door-toggle">
+        <button class="toggle-btn active" id="toggleOpenBtn" type="button">Tür offen</button>
+        <button class="toggle-btn" id="toggleClosedBtn" type="button">Tür geschlossen</button>
+      </div>
+
+      <div class="plate-wrap" id="plateWrapStandalone">
         <div class="engrave-plate">
           <div class="engrave-text placeholder" id="engravePreview">Deine Gravur</div>
         </div>
       </div>
-      <div class="trolley-photo-wrap">
-        <img class="trolley-photo" src="assets/trolley-open.png" width="290" height="955" alt="Original SWISS Trolley mit geöffneter Fronttür">
+
+      <div class="trolley-photo-wrap" id="trolleyPhotoWrap">
+        <img class="trolley-photo" id="trolleyPhoto" src="assets/trolley-open.png" width="290" height="955" alt="Original SWISS Trolley mit geöffneter Fronttür">
         <div class="rails-frame" id="railsFrame">
           <!-- drawers injected by JS -->
         </div>
+        <div class="engrave-plate engrave-plate-onphoto" id="engravePlateOnPhoto">
+          <div class="engrave-text placeholder" id="engravePreviewClosed">Deine Gravur</div>
+        </div>
       </div>
     </div>
-    <div class="viewer-footnote">Echtfoto eines original SWISS Bordtrolleys bei geöffneter Fronttür. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.</div>
+    <div class="viewer-footnote" id="viewerFootnote">Echtfoto eines original SWISS Bordtrolleys bei geöffneter Fronttür. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.</div>
   </div>
 
   <!-- CONFIG PANEL -->

@@ -26,10 +26,12 @@
   var configId = generateConfigId();
 
   var drag = null;           // active pointer-drag payload
+  var currentView = 'open';  // 'open' | 'closed'
 
   /* ---------------- dom refs ---------------- */
   var railsFrame = document.getElementById('railsFrame');
   var engravePreview = document.getElementById('engravePreview');
+  var engravePreviewClosed = document.getElementById('engravePreviewClosed');
   var engraveInput = document.getElementById('engraveInput');
   var engraveWarn = document.getElementById('engraveWarn');
   var charCount = document.getElementById('charCount');
@@ -44,6 +46,35 @@
   var summaryRows = document.getElementById('summaryRows');
   var totalPriceEl = document.getElementById('totalPrice');
   var viewerSerial = document.getElementById('viewerSerial');
+  var trolleyEl = document.getElementById('trolley');
+  var trolleyPhoto = document.getElementById('trolleyPhoto');
+  var trolleyPhotoWrap = document.getElementById('trolleyPhotoWrap');
+  var toggleOpenBtn = document.getElementById('toggleOpenBtn');
+  var toggleClosedBtn = document.getElementById('toggleClosedBtn');
+  var viewerFootnote = document.getElementById('viewerFootnote');
+
+  var VIEW_PHOTOS = {
+    open:   { src:'assets/trolley-open.png',   ratio:'290 / 955', alt:'Original SWISS Trolley mit geöffneter Fronttür',
+              footnote:'Echtfoto eines original SWISS Bordtrolleys bei geöffneter Fronttür. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.' },
+    closed: { src:'assets/trolley-closed.png', ratio:'277 / 949', alt:'Original SWISS Trolley mit geschlossener Fronttür und Gravurplakette',
+              footnote:'Echtfoto eines original SWISS Bordtrolleys bei geschlossener Fronttür. Auf der Plakette erscheint deine Gravur.' }
+  };
+
+  function setView(view){
+    currentView = view;
+    trolleyEl.setAttribute('data-view', view);
+    toggleOpenBtn.classList.toggle('active', view === 'open');
+    toggleClosedBtn.classList.toggle('active', view === 'closed');
+    var cfg = VIEW_PHOTOS[view];
+    trolleyPhoto.src = cfg.src;
+    trolleyPhoto.alt = cfg.alt;
+    trolleyPhotoWrap.style.aspectRatio = cfg.ratio;
+    viewerFootnote.textContent = cfg.footnote;
+    if (view === 'open') renderDrawers();
+  }
+
+  toggleOpenBtn.addEventListener('click', function(){ setView('open'); });
+  toggleClosedBtn.addEventListener('click', function(){ setView('closed'); });
 
   /* ---------------- helpers: occupancy ---------------- */
   function occupancyArray(excludeId){
@@ -333,13 +364,12 @@
   });
 
   function renderEngrave(){
-    if (engraveText.trim().length === 0){
-      engravePreview.textContent = 'Deine Gravur';
-      engravePreview.classList.add('placeholder');
-    } else {
-      engravePreview.textContent = engraveText;
-      engravePreview.classList.remove('placeholder');
-    }
+    var isEmpty = engraveText.trim().length === 0;
+    var text = isEmpty ? 'Deine Gravur' : engraveText;
+    [engravePreview, engravePreviewClosed].forEach(function(el){
+      el.textContent = text;
+      el.classList.toggle('placeholder', isEmpty);
+    });
   }
 
   /* ---------------- price & summary ---------------- */
@@ -538,5 +568,6 @@
     resizeTimer = setTimeout(renderDrawers, 120);
   });
 
+  setView('open');
   renderAll();
 })();

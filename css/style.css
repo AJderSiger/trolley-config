@@ -244,6 +244,35 @@ h1.title{
   -webkit-user-select:none;
 }
 
+.door-toggle{
+  display:flex;
+  gap:2px;
+  margin-bottom:14px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:3px;
+  background:#fff;
+}
+.toggle-btn{
+  flex:1;
+  border:none;
+  background:none;
+  padding:7px 6px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  border-radius:17px;
+  cursor:pointer;
+  transition:background .15s, color .15s;
+}
+.toggle-btn:hover{color:var(--ink);}
+.toggle-btn.active{
+  background:var(--ink);
+  color:#fff;
+}
+
 .plate-wrap{
   display:flex;
   justify-content:center;
@@ -261,6 +290,23 @@ h1.title{
   padding:4px 8px;
   box-shadow:inset 0 1px 2px rgba(255,255,255,0.7), inset 0 -1px 2px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
 }
+.engrave-plate.engrave-plate-onphoto{
+  position:absolute;
+  left:28.5%;
+  top:7.6%;
+  width:40%;
+  height:8.8%;
+  min-height:0;
+  margin:0;
+  padding:2px 4px;
+  display:none;
+}
+
+.engrave-plate-onphoto .engrave-text{ font-size:10px; letter-spacing:0.07em; }
+
+.trolley[data-view="closed"] #plateWrapStandalone{ display:none; }
+.trolley[data-view="closed"] #railsFrame{ display:none; }
+.trolley[data-view="closed"] .engrave-plate-onphoto{ display:flex; }
 
 .trolley-photo-wrap{
   position:relative;
@@ -300,9 +346,9 @@ h1.title{
 .rails-frame{
   position:absolute;
   top:4%;
-  left:5.5%;
-  right:7%;
-  height:70%;
+  left:4.5%;
+  right:5.5%;
+  height:83%;
   overflow:hidden;
 }
 
