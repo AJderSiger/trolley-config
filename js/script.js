@@ -3,7 +3,7 @@
 
   /* ---------------- constants ---------------- */
   var SLOT_COUNT = 14;                 // total capacity in "Feldern" (SDU)
-  var ROW_H = 25;                      // must match CSS repeating-linear-gradient step
+  var ROW_H = 25;                      // recomputed from the rendered rails-frame height (see updateRowH)
   var SIZE_LEN = { small:1, medium:2, large:3 };
   var WOOD_LEN = 1;
   var SIZE_NAMES = { small:'Klein', medium:'Mittel', large:'Gross' };
@@ -238,15 +238,13 @@
   }
 
   /* ---------------- render trolley drawers ---------------- */
-  function ensureGuides(){
-    // draw faint row guides once
-    if (railsFrame.querySelector('.guides-built')) return;
-    var marker = document.createElement('div');
-    marker.className = 'guides-built';
-    marker.style.display = 'none';
-    railsFrame.appendChild(marker);
-    railsFrame.style.height = (SLOT_COUNT * ROW_H) + 'px';
+  function updateRowH(){
+    var h = railsFrame.clientHeight;
+    if (h > 0) ROW_H = h / SLOT_COUNT;
+  }
 
+  function ensureGuides(){
+    if (railsFrame.querySelector('#dropPreview')) return;
     var preview = document.createElement('div');
     preview.className = 'drop-preview';
     preview.id = 'dropPreview';
@@ -255,6 +253,7 @@
 
   function renderDrawers(){
     ensureGuides();
+    updateRowH();
     // remove old drawer elements
     railsFrame.querySelectorAll('.drawer').forEach(function(el){ el.remove(); });
 
@@ -532,6 +531,12 @@
     renderEngrave();
     renderSummary();
   }
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderDrawers, 120);
+  });
 
   renderAll();
 })();

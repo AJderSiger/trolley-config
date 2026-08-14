@@ -238,46 +238,19 @@ h1.title{
 
 .trolley{
   position:relative;
-  width:min(300px, 76vw);
+  width:min(230px, 62vw);
+  margin:0 auto;
   user-select:none;
   -webkit-user-select:none;
 }
 
-.trolley-shell{
-  position:relative;
-  background:linear-gradient(180deg, #fbfbfc 0%, #eef0f1 6%, #f4f5f6 50%, #e6e8e9 100%);
-  border:1px solid #aeb1b3;
-  border-radius:10px 10px 5px 5px;
-  padding:0 10px 16px;
-  box-shadow:0 20px 34px -16px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.6);
-}
-
-.trolley-top{
-  position:relative;
-  height:20px;
-  margin:0 -10px 12px;
-  background:linear-gradient(180deg,#f4f5f6,#c9cccd);
-  border-bottom:1px solid #a9acae;
-  border-radius:9px 9px 0 0;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,0.7), inset 0 -3px 4px rgba(0,0,0,0.12);
-}
-.top-handle{
-  position:absolute;
-  left:50%; top:55%;
-  transform:translate(-50%,-50%);
-  width:72px; height:9px;
-  border-radius:5px;
-  background:#3a3c3e;
-  box-shadow:inset 0 2px 3px rgba(0,0,0,0.65), inset 0 -1px 0 rgba(255,255,255,0.08);
-}
-
 .plate-wrap{
   display:flex;
-  justify-content:flex-start;
+  justify-content:center;
   margin-bottom:10px;
 }
 .engrave-plate{
-  width:64%;
+  width:82%;
   min-height:30px;
   background:linear-gradient(180deg,#e2e4e5,#bfc2c4);
   border:1px solid #94979a;
@@ -289,37 +262,19 @@ h1.title{
   box-shadow:inset 0 1px 2px rgba(255,255,255,0.7), inset 0 -1px 2px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
 }
 
-.door-frame{
+.trolley-photo-wrap{
   position:relative;
-  background:linear-gradient(180deg,#e5e7e8,#cdd0d1);
-  border:1px solid #a4a7a9;
-  border-radius:6px;
-  padding:5px;
-  box-shadow:inset 0 1px 2px rgba(255,255,255,0.6), inset 0 -1px 3px rgba(0,0,0,0.15);
+  width:100%;
+  aspect-ratio:290/955;
+  filter:drop-shadow(0 16px 22px rgba(0,0,0,0.3));
 }
-
-.latch-assembly{
-  position:absolute;
-  top:45%; right:-7px;
-  transform:translateY(-50%);
-  z-index:6;
+.trolley-photo{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
   pointer-events:none;
-}
-.latch-handle{
-  width:18px; height:18px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #eceeee, #9a9d9f 70%);
-  box-shadow:0 1px 3px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(0,0,0,0.2);
-  position:relative;
-}
-.latch-handle::after{
-  content:"";
-  position:absolute;
-  left:50%; top:50%;
-  width:10px; height:3px;
-  background:#4a4d50;
-  border-radius:1px;
-  transform:translate(-50%,-50%) rotate(-35deg);
+  user-select:none;
 }
 .engrave-text{
   font-family:var(--font-display);
@@ -343,20 +298,17 @@ h1.title{
 }
 
 .rails-frame{
-  position:relative;
-  background:
-    repeating-linear-gradient(180deg, transparent 0px, transparent 25px, rgba(0,0,0,0.12) 25px, rgba(0,0,0,0.12) 26px),
-    #45474b;
-  border:1px solid #2a2c2f;
-  border-radius:3px;
-  padding:0;
+  position:absolute;
+  top:4%;
+  left:5.5%;
+  right:7%;
+  height:70%;
   overflow:hidden;
-  box-shadow:inset 0 3px 8px rgba(0,0,0,0.5);
 }
 
 .drop-preview{
   position:absolute;
-  left:4px; right:4px;
+  left:2px; right:2px;
   border-radius:2px;
   border:2px dashed rgba(255,255,255,0.6);
   background:rgba(255,255,255,0.08);
@@ -370,7 +322,7 @@ h1.title{
 
 .drawer{
   position:absolute;
-  left:4px; right:4px;
+  left:2px; right:2px;
   border-radius:2px;
   cursor:grab;
   touch-action:none;
@@ -424,35 +376,6 @@ h1.title{
     linear-gradient(180deg,var(--wood-hi),var(--wood));
   color:#2c1c0c;
 }
-
-.casters{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  padding:14px 18px 0;
-}
-.caster{
-  position:relative;
-  width:15px;height:15px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #6b6e71, #1c1d1f 75%);
-  box-shadow:0 2px 3px rgba(0,0,0,0.4);
-}
-.brake{
-  position:absolute;
-  bottom:-4px;
-  left:50%;
-  transform:translateX(-50%);
-  width:5px; height:11px;
-  border-radius:1px;
-}
-.brake.red{background:var(--red);}
-.brake.green{background:var(--ok);}
-
-.rivet-tl{top:9px; left:9px;}
-.rivet-tr{top:9px; right:9px;}
-.rivet-bl{bottom:11px; left:9px;}
-.rivet-br{bottom:11px; right:9px;}
 
 .viewer-footnote{
   margin-top:22px;
