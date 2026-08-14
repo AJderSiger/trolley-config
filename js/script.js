@@ -48,15 +48,14 @@
   var viewerSerial = document.getElementById('viewerSerial');
   var trolleyEl = document.getElementById('trolley');
   var trolleyPhoto = document.getElementById('trolleyPhoto');
-  var trolleyPhotoWrap = document.getElementById('trolleyPhotoWrap');
   var toggleOpenBtn = document.getElementById('toggleOpenBtn');
   var toggleClosedBtn = document.getElementById('toggleClosedBtn');
   var viewerFootnote = document.getElementById('viewerFootnote');
 
   var VIEW_PHOTOS = {
-    open:   { src:'assets/trolley-open.png',   ratio:'290 / 955', alt:'Original SWISS Trolley mit geöffneter Fronttür',
+    open:   { src:'assets/trolley-open.png',   alt:'Original SWISS Trolley mit geöffneter Fronttür',
               footnote:'Echtfoto eines original SWISS Bordtrolleys bei geöffneter Fronttür. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.' },
-    closed: { src:'assets/trolley-closed.png', ratio:'277 / 949', alt:'Original SWISS Trolley mit geschlossener Fronttür und Gravurplakette',
+    closed: { src:'assets/trolley-closed.png', alt:'Original SWISS Trolley mit geschlossener Fronttür und Gravurplakette',
               footnote:'Echtfoto eines original SWISS Bordtrolleys bei geschlossener Fronttür. Auf der Plakette erscheint deine Gravur.' }
   };
 
@@ -68,7 +67,6 @@
     var cfg = VIEW_PHOTOS[view];
     trolleyPhoto.src = cfg.src;
     trolleyPhoto.alt = cfg.alt;
-    trolleyPhotoWrap.style.aspectRatio = cfg.ratio;
     viewerFootnote.textContent = cfg.footnote;
     if (view === 'open') renderDrawers();
   }

@@ -304,14 +304,14 @@ h1.title{
 
 .engrave-plate-onphoto .engrave-text{ font-size:10px; letter-spacing:0.07em; }
 
-.trolley[data-view="closed"] #plateWrapStandalone{ display:none; }
+.trolley[data-view="closed"] #plateWrapStandalone{ visibility:hidden; }
 .trolley[data-view="closed"] #railsFrame{ display:none; }
 .trolley[data-view="closed"] .engrave-plate-onphoto{ display:flex; }
 
 .trolley-photo-wrap{
   position:relative;
   width:100%;
-  aspect-ratio:290/955;
+  aspect-ratio:277/949;
   filter:drop-shadow(0 16px 22px rgba(0,0,0,0.3));
 }
 .trolley-photo{
@@ -345,10 +345,10 @@ h1.title{
 
 .rails-frame{
   position:absolute;
-  top:4%;
+  top:5.8%;
   left:4.5%;
   right:5.5%;
-  height:83%;
+  height:79.8%;
   overflow:hidden;
 }
 
