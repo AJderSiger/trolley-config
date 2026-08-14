@@ -48,24 +48,35 @@
     </div>
     <div class="trolley" id="trolley">
       <div class="trolley-shell" id="trolleyShell">
-        <div class="handle-bar"></div>
+        <span class="rivet rivet-tl"></span>
+        <span class="rivet rivet-tr"></span>
+        <div class="trolley-top">
+          <div class="top-handle"></div>
+        </div>
         <div class="plate-wrap">
           <div class="engrave-plate">
             <div class="engrave-text placeholder" id="engravePreview">Deine Gravur</div>
           </div>
         </div>
-        <div class="rails-frame" id="railsFrame">
-          <!-- slot guides + drawers injected by JS -->
+        <div class="door-frame">
+          <div class="latch-assembly" aria-hidden="true">
+            <div class="latch-handle"></div>
+          </div>
+          <div class="rails-frame" id="railsFrame">
+            <!-- slot guides + drawers injected by JS -->
+          </div>
         </div>
         <div class="casters">
-          <div class="caster"></div>
-          <div class="caster"></div>
+          <div class="caster"><span class="brake red"></span></div>
+          <div class="caster"><span class="brake green"></span></div>
           <div class="caster"></div>
           <div class="caster"></div>
         </div>
+        <span class="rivet rivet-bl"></span>
+        <span class="rivet rivet-br"></span>
       </div>
     </div>
-    <div class="viewer-footnote">Massstabsgetreue Vorschau. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.</div>
+    <div class="viewer-footnote">Ansicht bei geöffneter Fronttür. Massstabsgetreue Vorschau — Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.</div>
   </div>
 
   <!-- CONFIG PANEL -->
