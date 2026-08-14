@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trolley Konfigurator — Refurbished Aircraft Trolley | SWISS</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<div class="topbar">
+  <div class="brand">
+    <img class="brand-logo" src="assets/swiss-logo.png" alt="SWISS">
+    <div class="brand-text">
+      <div class="airline">Swiss International Air Lines · Bordausstattung</div>
+      <div class="mark">TROLLEY<span>.</span>CONFIG</div>
+      <div class="sub">Refurbished Aircraft Trolley</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="trust-badges">
+      <div class="badge"><span class="dot"></span>Original Bordequipment</div>
+      <div class="badge"><span class="dot"></span>Geprüft &amp; wiederaufbereitet</div>
+      <div class="badge"><span class="dot"></span>2 Jahre Garantie</div>
+    </div>
+    <button class="reset-link" id="resetBtn">Konfiguration zurücksetzen</button>
+  </div>
+</div>
+
+<div class="eyebrow-row">
+  <div>
+    <div class="eyebrow">Interaktiver Konfigurator</div>
+    <h1 class="title">Stell deinen Trolley zusammen</h1>
+    <div class="title-lede">Jeder Trolley stammt aus dem aktiven Bordservice von SWISS und wird bei uns von Grund auf zerlegt, geprüft und wiederaufbereitet — anschliessend individuell nach deinen Wünschen konfiguriert.</div>
+  </div>
+  <div class="provenance-note">Serie ATLAS&nbsp;500 · Original SWISS Rollout</div>
+</div>
+
+<div class="stage">
+
+  <!-- TROLLEY VIEWER -->
+  <div class="viewer">
+    <div class="viewer-label-row">
+      <div class="viewer-label">Ansicht — Vorderseite</div>
+      <div class="viewer-serial" id="viewerSerial">CONFIG-ID —</div>
+    </div>
+    <div class="trolley" id="trolley">
+      <div class="trolley-shell" id="trolleyShell">
+        <div class="handle-bar"></div>
+        <div class="plate-wrap">
+          <div class="engrave-plate">
+            <div class="engrave-text placeholder" id="engravePreview">Deine Gravur</div>
+          </div>
+        </div>
+        <div class="rails-frame" id="railsFrame">
+          <!-- slot guides + drawers injected by JS -->
+        </div>
+        <div class="casters">
+          <div class="caster"></div>
+          <div class="caster"></div>
+          <div class="caster"></div>
+          <div class="caster"></div>
+        </div>
+      </div>
+    </div>
+    <div class="viewer-footnote">Massstabsgetreue Vorschau. Abweichungen zwischen Darstellung und Endprodukt sind aus fertigungstechnischen Gründen möglich.</div>
+  </div>
+
+  <!-- CONFIG PANEL -->
+  <div class="panel">
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-num">01</div>
+          <h2>Farbe</h2>
+        </div>
+      </div>
+      <p class="hint">Wähle eine Farbe für alle Metallschubladen. Es kann nur eine Farbe pro Trolley verwendet werden.</p>
+      <div class="swatch-row" id="colorRow">
+        <div class="swatch" data-color="bordeaux">
+          <div class="chip bordeaux"></div>
+          <div class="name">Bordeaux</div>
+          <div class="check">✓ gewählt</div>
+        </div>
+        <div class="swatch" data-color="white">
+          <div class="chip white"></div>
+          <div class="name">Weiss</div>
+          <div class="check">✓ gewählt</div>
+        </div>
+        <div class="swatch" data-color="black">
+          <div class="chip black"></div>
+          <div class="name">Schwarz</div>
+          <div class="check">✓ gewählt</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-num">02</div>
+          <h2>Metallschubladen</h2>
+        </div>
+      </div>
+      <p class="hint">Ziehe eine Schublade direkt in den Trolley oder nutze die Zähler. Die Position kannst du frei bestimmen.</p>
+      <div id="metalTiles"></div>
+      <div class="tile-hint" id="colorHint" style="display:none;">Bitte zuerst eine Farbe wählen.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-num">03</div>
+          <h2>Holz</h2>
+        </div>
+      </div>
+      <p class="hint">Alternativ kannst du Holzplatten anstelle von Metallschubladen einsetzen.</p>
+      <div id="woodTiles"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-num">04</div>
+          <h2>Gravur</h2>
+        </div>
+      </div>
+      <p class="hint">Individueller Text für das Metallplättchen an der Vorderseite.</p>
+      <input class="engrave-field" id="engraveInput" maxlength="18" placeholder="z. B. DEIN NAME" autocomplete="off">
+      <div class="char-count"><span id="charCount">0</span> / 18 Zeichen</div>
+      <div class="engrave-warn" id="engraveWarn">Dieser Text ist nicht zulässig. Bitte wähle einen anderen Text.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-num">05</div>
+          <h2>Kapazität</h2>
+        </div>
+      </div>
+      <div class="cap-bar-track"><div class="cap-bar-fill" id="capFill"></div></div>
+      <div class="cap-stats">
+        <span id="capUsedText">0 von 14 Feldern belegt</span>
+        <span class="pct" id="capPct">0 %</span>
+      </div>
+      <div class="cap-note">Kleine Schublade = 1 Feld · Mittlere Schublade = 2 Felder · Grosse Schublade = 3 Felder · Holzplatte = 1 Feld</div>
+    </div>
+
+    <div class="card summary">
+      <div class="card-head">
+        <div>
+          <div class="card-num">06</div>
+          <h2>Zusammenfassung</h2>
+        </div>
+      </div>
+      <div class="summary-rows" id="summaryRows"></div>
+      <div class="summary-divider"></div>
+      <div class="summary-total">
+        <span class="label">Gesamtpreis</span>
+        <span class="value"><span class="chf">CHF</span><span id="totalPrice">890.–</span></span>
+      </div>
+      <button class="cta-btn" id="ctaBtn">Konfiguration anfragen</button>
+      <div class="cta-note">Unverbindliche Anfrage · Lieferzeit ca. 3–4 Wochen · Versand innerhalb der Schweiz inklusive</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <div class="t-title" id="toastTitle">Trolley maximal ausgelastet</div>
+  <div class="t-body" id="toastBody">Für diese Schublade ist nicht mehr genügend Platz im Trolley vorhanden.</div>
+</div>
+
+<div class="trash-hint" id="trashHint">Loslassen zum Entfernen</div>
+
+<div class="site-footer">
+  <div class="foot-brand"><img class="foot-logo" src="assets/swiss-logo.png" alt="SWISS">Trolley.Config — ein Projekt rund um original SWISS Bordausstattung</div>
+  <div class="foot-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="impressum.html#kontakt">Kontakt</a>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
