@@ -3,14 +3,14 @@
 :root{
   --shell:#eef0f1;
   --shell-2:#e3e5e7;
-  --ink:#171a1d;
+  --ink:#101010;
   --ink-soft:#5c6167;
   --line:#d6d9db;
   --line-soft:#e6e8e9;
   --panel:#f6f7f7;
   --panel-hi:#ffffff;
-  --red:#e3000f;
-  --red-deep:#a3170f;
+  --red:#cc0000;
+  --red-deep:#970000;
   --bordeaux:#5c1a26;
   --bordeaux-hi:#7a2534;
   --white-metal:#eceeee;
@@ -22,10 +22,10 @@
   --amber:#c8720a;
   --ok:#1e7d46;
   --radius-s:3px;
-  --radius-pill:999px;
-  --font-display:'Archivo', sans-serif;
+  --radius-btn:12px;
+  --font-display:'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-engrave:'Big Shoulders Display', sans-serif;
-  --font-body:'Archivo', sans-serif;
+  --font-body:'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono:'JetBrains Mono', monospace;
 }
 
@@ -135,7 +135,7 @@ body{
   color:var(--ink-soft);
   background:none;
   border:1px solid var(--line);
-  border-radius:var(--radius-pill);
+  border-radius:var(--radius-btn);
   padding:9px 16px;
   cursor:pointer;
   transition:border-color .15s, color .15s;
@@ -727,7 +727,7 @@ h1.title{
   background:var(--red);
   color:#fff;
   border:none;
-  border-radius:var(--radius-pill);
+  border-radius:var(--radius-btn);
   padding:15px 16px;
   font-family:var(--font-body);
   font-weight:700;
