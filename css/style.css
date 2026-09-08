@@ -538,11 +538,11 @@ h1.title{
 .tile{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   border:1.5px solid var(--line);
   border-radius:6px;
-  padding:10px 12px;
-  margin-bottom:8px;
+  padding:12px 14px;
+  margin-bottom:10px;
   background:#fff;
   cursor:grab;
   touch-action:none;
@@ -551,8 +551,8 @@ h1.title{
 .tile.disabled{opacity:0.45; cursor:not-allowed;}
 .tile .swatch-chip{
   display:block;
-  width:42px;height:32px;
-  border-radius:3px;
+  width:92px;height:70px;
+  border-radius:5px;
   flex-shrink:0;
   object-fit:cover;
   object-position:center 35%;
