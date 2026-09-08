@@ -569,6 +569,34 @@
     place('metal', 'large', SIZE_LEN.large);
   }
 
+  var DEFAULT_LAYOUT = [
+    { kind:'wood', size:null, start:0, len:WOOD_LEN },
+    { kind:'metal', size:'small', start:1, len:SIZE_LEN.small },
+    { kind:'metal', size:'medium', start:2, len:SIZE_LEN.medium },
+    { kind:'metal', size:'large', start:4, len:SIZE_LEN.large }
+  ];
+
+  function isDefaultLayout(){
+    if (metalColor !== 'bordeaux') return false;
+    var actual = Object.keys(drawers).map(function(id){
+      var d = drawers[id];
+      return { kind:d.kind, size:d.size, start:d.start, len:d.len };
+    });
+    if (actual.length !== DEFAULT_LAYOUT.length) return false;
+    return DEFAULT_LAYOUT.every(function(e){
+      return actual.some(function(a){
+        return a.kind===e.kind && a.size===e.size && a.start===e.start && a.len===e.len;
+      });
+    });
+  }
+
+  var hasWarnedLayoutChange = false;
+  function checkLayoutChanged(){
+    if (hasWarnedLayoutChange || isDefaultLayout()) return;
+    hasWarnedLayoutChange = true;
+    showToast('Standard-Layout geändert', 'Du hast die Grundausstattung (Holz, Klein, Mittel, Gross) angepasst.');
+  }
+
   /* ---------------- reset ---------------- */
   document.getElementById('resetBtn').addEventListener('click', function(){
     applyDefaultConfiguration();
@@ -577,6 +605,7 @@
     charCount.textContent = '0';
     engraveWarn.classList.remove('show');
     configId = generateConfigId();
+    hasWarnedLayoutChange = false;
     renderAll();
   });
 
@@ -589,6 +618,7 @@
     renderCapacity();
     renderEngrave();
     renderSummary();
+    checkLayoutChanged();
   }
 
   var resizeTimer = null;
