@@ -551,10 +551,26 @@
     renderAll();
   }
 
+  /* ---------------- default configuration ---------------- */
+  function applyDefaultConfiguration(){
+    drawers = {};
+    nextId = 1;
+    metalColor = 'bordeaux';
+    var pos = 0;
+    function place(kind, size, len){
+      drawers[nextId] = { id:nextId, kind:kind, size:size, start:pos, len:len };
+      nextId++;
+      pos += len;
+    }
+    place('wood', null, WOOD_LEN);
+    place('metal', 'small', SIZE_LEN.small);
+    place('metal', 'medium', SIZE_LEN.medium);
+    place('metal', 'large', SIZE_LEN.large);
+  }
+
   /* ---------------- reset ---------------- */
   document.getElementById('resetBtn').addEventListener('click', function(){
-    drawers = {};
-    metalColor = null;
+    applyDefaultConfiguration();
     engraveText = '';
     engraveInput.value = '';
     charCount.textContent = '0';
@@ -581,5 +597,6 @@
   });
 
   setView('open');
+  applyDefaultConfiguration();
   renderAll();
 })();
