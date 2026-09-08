@@ -295,6 +295,7 @@
       el.style.top = (d.start * ROW_H) + 'px';
       el.style.height = (d.len * ROW_H - 3) + 'px';
       el.setAttribute('data-id', d.id);
+      applyDrawerPhoto(el, d);
       el.innerHTML =
         '<div class="grip"><span></span><span></span><span></span></div>' +
         '<div class="label">' + labelFor(d) + '</div>' +
@@ -317,6 +318,22 @@
   function materialClass(d){
     if (d.kind === 'wood') return 'mat-wood';
     return colorClass(metalColor || 'bordeaux');
+  }
+
+  var FALLBACK_COLOR = { bordeaux:'#5c1a26', white:'#eceeee', black:'#212327' };
+
+  function photoUrlFor(d){
+    if (d.kind === 'wood') return 'assets/drawer-wood-cutout.png';
+    return 'assets/drawer-' + d.size + '-' + (metalColor || 'bordeaux') + '-cutout.png';
+  }
+
+  function applyDrawerPhoto(el, d){
+    var fallback = d.kind === 'wood' ? '#a9793f' : (FALLBACK_COLOR[metalColor] || FALLBACK_COLOR.bordeaux);
+    el.style.background =
+      'linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.35)), ' +
+      'url("' + photoUrlFor(d) + '") center / cover no-repeat, ' +
+      fallback;
+    el.style.color = '#fff';
   }
 
   function labelFor(d){
