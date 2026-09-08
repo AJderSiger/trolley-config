@@ -350,8 +350,8 @@ h1.title{
 .rails-frame{
   position:absolute;
   top:5.8%;
-  left:4.5%;
-  right:5.5%;
+  left:5.5%;
+  right:7.5%;
   height:79.8%;
   overflow:hidden;
 }
@@ -372,7 +372,7 @@ h1.title{
 
 .drawer{
   position:absolute;
-  left:0; right:0;
+  left:1px; right:1px;
   border-radius:2px;
   cursor:grab;
   touch-action:none;
