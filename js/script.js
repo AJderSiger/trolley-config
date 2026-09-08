@@ -320,20 +320,15 @@
     return colorClass(metalColor || 'bordeaux');
   }
 
-  var FALLBACK_COLOR = { bordeaux:'#5c1a26', white:'#eceeee', black:'#212327' };
-
   function photoUrlFor(d){
     if (d.kind === 'wood') return 'assets/drawer-wood-cutout.png';
     return 'assets/drawer-' + d.size + '-' + (metalColor || 'bordeaux') + '-cutout.png';
   }
 
   function applyDrawerPhoto(el, d){
-    var fallback = d.kind === 'wood' ? '#a9793f' : (FALLBACK_COLOR[metalColor] || FALLBACK_COLOR.bordeaux);
-    el.style.background =
-      'linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.35)), ' +
-      'url("' + photoUrlFor(d) + '") center / cover no-repeat, ' +
-      fallback;
-    el.style.color = '#fff';
+    // "contain" (not "cover") so the drawer's own photographed outline stays
+    // visible instead of being cropped to fill the slot rectangle.
+    el.style.background = 'url("' + photoUrlFor(d) + '") center / contain no-repeat';
   }
 
   function labelFor(d){

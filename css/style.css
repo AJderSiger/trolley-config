@@ -379,8 +379,8 @@ h1.title{
   display:flex;
   align-items:center;
   padding:0 10px;
-  transition:box-shadow .12s ease, filter .12s ease;
-  box-shadow:0 3px 6px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 3px rgba(0,0,0,0.2);
+  transition:filter .12s ease;
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,0.5));
 }
 .drawer:active{cursor:grabbing;}
 .drawer.dragging-source{opacity:0.28; filter:grayscale(0.3);}
@@ -402,6 +402,7 @@ h1.title{
   letter-spacing:0.06em;
   text-transform:uppercase;
   flex:1;
+  text-shadow:0 1px 3px rgba(0,0,0,0.6);
 }
 .drawer .remove-btn{
   width:16px;height:16px;
