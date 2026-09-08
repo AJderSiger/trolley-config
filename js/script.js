@@ -320,15 +320,16 @@
     return colorClass(metalColor || 'bordeaux');
   }
 
-  function photoUrlFor(d){
-    if (d.kind === 'wood') return 'assets/drawer-wood-cutout.png';
-    return 'assets/drawer-' + d.size + '-' + (metalColor || 'bordeaux') + '-cutout.png';
+  function photoUrlFor(kind, size){
+    if (kind === 'wood') return 'assets/drawer-wood-cutout.png';
+    return 'assets/drawer-' + size + '-' + (metalColor || 'bordeaux') + '-cutout.png';
   }
 
   function applyDrawerPhoto(el, d){
-    // "contain" (not "cover") so the drawer's own photographed outline stays
-    // visible instead of being cropped to fill the slot rectangle.
-    el.style.background = 'url("' + photoUrlFor(d) + '") center / contain no-repeat';
+    // Background-removed photo, scaled to the slot's full width (edge to
+    // edge like the real trolley) with the height following naturally —
+    // whatever doesn't fit is simply clipped by the element's own box.
+    el.style.background = 'url("' + photoUrlFor(d.kind, d.size) + '") center / 100% auto no-repeat';
   }
 
   function labelFor(d){
@@ -429,11 +430,11 @@
   function startDragFromPalette(ev, kind, size){
     ev.preventDefault();
     var len = lenFor(kind, size);
-    var colorCls = kind === 'wood' ? 'mat-wood' : colorClass(metalColor);
     var ghost = document.createElement('div');
-    ghost.className = 'ghost-drawer ' + colorCls;
-    ghost.style.width = '220px';
-    ghost.style.height = (len*ROW_H - 3) + 'px';
+    ghost.className = 'ghost-drawer';
+    ghost.style.width = '260px';
+    ghost.style.height = (len*ROW_H*1.3) + 'px';
+    ghost.style.background = 'url("' + photoUrlFor(kind, size) + '") center / 100% auto no-repeat';
     ghost.innerHTML = '<div class="label">' + (kind==='wood'?'Holz':SIZE_NAMES[size]) + '</div>';
     document.body.appendChild(ghost);
 
@@ -450,11 +451,11 @@
     var srcEl = railsFrame.querySelector('.drawer[data-id="' + id + '"]');
     if (srcEl) srcEl.classList.add('dragging-source');
 
-    var colorCls = materialClass(d);
     var ghost = document.createElement('div');
-    ghost.className = 'ghost-drawer ' + colorCls;
-    ghost.style.width = '220px';
-    ghost.style.height = (d.len*ROW_H - 3) + 'px';
+    ghost.className = 'ghost-drawer';
+    ghost.style.width = '260px';
+    ghost.style.height = (d.len*ROW_H*1.3) + 'px';
+    ghost.style.background = 'url("' + photoUrlFor(d.kind, d.size) + '") center / 100% auto no-repeat';
     ghost.innerHTML = '<div class="label">' + labelFor(d) + '</div>';
     document.body.appendChild(ghost);
 
