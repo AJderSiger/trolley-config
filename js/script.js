@@ -166,7 +166,9 @@
       tile.setAttribute('data-kind', 'metal');
       tile.setAttribute('data-size', size);
       tile.innerHTML =
-        '<div class="swatch-chip ' + (metalColor ? colorClass(metalColor) : '') + '" style="' + (metalColor ? '' : 'background:repeating-linear-gradient(45deg,#ddd,#ddd 4px,#eee 4px,#eee 8px);') + '"></div>' +
+        (metalColor
+          ? '<img class="swatch-chip" src="assets/drawer-' + size + '-' + metalColor + '.png" alt="">'
+          : '<div class="swatch-chip" style="background:repeating-linear-gradient(45deg,#ddd,#ddd 4px,#eee 4px,#eee 8px);"></div>') +
         '<div class="info"><div class="name">' + SIZE_NAMES[size] + '</div><div class="sub">' + SIZE_LEN[size] + (SIZE_LEN[size]===1?' Feld':' Felder') + '</div><div class="price">+ CHF ' + SIZE_PRICE[size] + '.– / Stk.</div></div>' +
         '<div class="stepper">' +
           '<button class="minus" ' + (count===0?'disabled':'') + '>–</button>' +
@@ -201,7 +203,7 @@
     tile.className = 'tile';
     tile.setAttribute('data-kind', 'wood');
     tile.innerHTML =
-      '<div class="swatch-chip mat-wood"></div>' +
+      '<img class="swatch-chip" src="assets/drawer-wood.png" alt="">' +
       '<div class="info"><div class="name">Holzplatte</div><div class="sub">' + WOOD_LEN + ' Felder</div><div class="price">+ CHF ' + WOOD_PRICE + '.– / Stk.</div></div>' +
       '<div class="stepper">' +
         '<button class="minus" ' + (count===0?'disabled':'') + '>–</button>' +
